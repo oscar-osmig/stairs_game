@@ -1,4 +1,4 @@
-package com.pluralsight;
+package com.osmig;
 
 public class Main {
     public static void main(String[] args) {

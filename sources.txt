@@ -1,0 +1,2 @@
+C:\Users\osmig\OneDrive\Desktop\PERSONAL_PROJECTS\stairs_game\src\main\java\com\osmig\Main.java
+C:\Users\osmig\OneDrive\Desktop\PERSONAL_PROJECTS\stairs_game\src\main\java\com\osmig\game_board\GameBoard.java
