@@ -4,12 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="82896196-09b7-46a6-88fa-092fb290ecdd" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/osmig/save_play/WritePlayToFile.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/osmig/game_board/GameBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/osmig/game_board/GameBoard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/osmig/key_listener/ArrowKeyListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/osmig/key_listener/ArrowKeyListener.java" afterDir="false" />
-    </list>
+    <list default="true" id="82896196-09b7-46a6-88fa-092fb290ecdd" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -45,7 +40,7 @@
     "Application.GameBoard.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "dart.analysis.tool.window.visible": "false",
-    "git-widget-placeholder": "save__play",
+    "git-widget-placeholder": "replay",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/osmig/OneDrive/Desktop/pluralsight/java-development/DELIcious"

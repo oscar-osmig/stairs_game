@@ -47,7 +47,7 @@ public class ArrowKeyListener {
 
 
         while (true) {
-
+            WritePlayToFile.clearReplayFile();
             getPlayerNames();
             System.out.print("\n" + "Enter W (up), A (left), S (down), D (right) to move:\n");
             GameBoard.resetGameBoard();
@@ -116,6 +116,8 @@ public class ArrowKeyListener {
                     GameBoard.win = false;
                     if (!askToReplay()){
                         System.out.println("Thank you for playing! Goodbye.");
+                        WritePlayToFile.clearReplayFile();
+                        System.exit(0);
                     }else {
                         GameBoard.replayGame();
                         System.out.println("Thank you for playing! Goodbye.");
