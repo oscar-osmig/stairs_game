@@ -1,14 +1,17 @@
 package com.osmig.game_board;
 
 import com.osmig.key_listener.ArrowKeyListener;
+import com.osmig.save_play.WritePlayToFile;
 
-import java.util.Arrays;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 
 public class GameBoard {
 
     public static String sp = "                                                                    ";
 
-    static String[][] board = {
+    public static String[][] board = {
             {"@", "    ", "@", "    ", "@", "    ", "@", "    ", "@", "    ", "@", "    ", "@", "    ", "@", "    ", "@", "    ", "$"},
             {"@", "    ", "@", "    ", "@", "    ", "@", "    ", "@", "    ", "@", "    ", "@", "    ", "@", "    ", "@", "    ", "@"},
             {"@", "    ", "@", "    ", "@", "    ", "@", "    ", "@", "    ", "@", "    ", "@", "    ", "@", "    ", "@", "    ", "@"},
@@ -32,6 +35,22 @@ public class GameBoard {
 
     public static int targetCol = 18;
     public static int targetRow = 0;
+
+
+    public static void replayGame() {
+        System.out.println("Replaying Game...");
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(WritePlayToFile.filePath))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                System.out.println(line);
+                // Add a delay for better readability
+                Thread.sleep(500); // Half a second delay
+            }
+        } catch (IOException | InterruptedException e) {
+            System.out.println("Error reading the file: " + e.getMessage());
+        }
+    }
 
     public static boolean win = false;
     public static void movePlayer(int dx, int dy) {
@@ -75,7 +94,7 @@ public class GameBoard {
         posX = newX;
         posY = newY;
 
-        printBoard();
+        //printBoard();
 
 //        if (!hasAvailableMoves()){
 //            System.out.println("No more available moves!");
@@ -102,8 +121,8 @@ public class GameBoard {
     }
 
 
-    public static void main(String[] args) {
-        printBoard();
+    public static void main(String[] args) throws IOException {
+        //printBoard();
         ArrowKeyListener.checkPlayerMove(board);
     }
 
@@ -119,7 +138,7 @@ public class GameBoard {
 
     public static void resetGameBoard() {
 
-        String[][] board = {
+        board = new String[][]{
                 {"@", "    ", "@", "    ", "@", "    ", "@", "    ", "@", "    ", "@", "    ", "@", "    ", "@", "    ", "@", "    ", "$"},
                 {"@", "    ", "@", "    ", "@", "    ", "@", "    ", "@", "    ", "@", "    ", "@", "    ", "@", "    ", "@", "    ", "@"},
                 {"@", "    ", "@", "    ", "@", "    ", "@", "    ", "@", "    ", "@", "    ", "@", "    ", "@", "    ", "@", "    ", "@"},
@@ -131,8 +150,13 @@ public class GameBoard {
                 {"@", "    ", "@", "    ", "@", "    ", "@", "    ", "@", "    ", "@", "    ", "@", "    ", "@", "    ", "@", "    ", "@"},
                 {"#", "    ", "@", "    ", "@", "    ", "@", "    ", "@", "    ", "@", "    ", "@", "    ", "@", "    ", "@", "    ", "@"}
         };
+        System.out.println();
+//        printBoard();
         // Reset positions
         posX = startingRow;
         posY = startingCol;
+
     }
+
+
 }

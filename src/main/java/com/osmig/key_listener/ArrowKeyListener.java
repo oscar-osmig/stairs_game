@@ -1,7 +1,10 @@
 package com.osmig.key_listener;
 
 import com.osmig.game_board.GameBoard;
+import com.osmig.save_play.WritePlayToFile;
 
+import java.io.IOException;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class ArrowKeyListener {
@@ -14,9 +17,9 @@ public class ArrowKeyListener {
 
     public static boolean askToPlayAgain() {
         Scanner scanner = new Scanner(System.in);
-        System.out.print("Do you want to play again? (yes/no): ");
+        System.out.print("Do you want to play again? (y/n): ");
         String response = scanner.nextLine().toLowerCase();
-        return response.equals("yes");
+        return response.equalsIgnoreCase("y");
     }
 
     private static String player1Name;
@@ -29,55 +32,109 @@ public class ArrowKeyListener {
         player2Name = scanner.nextLine();
     }
 
-    public static void checkPlayerMove(String[][] board){
+    public static boolean askToReplay() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Do you want to replay the game? (y/n): ");
+        String response = scanner.nextLine().toLowerCase();
+        return response.equalsIgnoreCase("y");
+    }
+
+    public static void checkPlayerMove(String[][] board) throws IOException {
+
         Scanner scanner = new Scanner(System.in);
         boolean player1Turn = true;
 
-        getPlayerNames();
-        System.out.print("\n"+"Enter W (up), A (left), S (down), D (right) to move:");
+
 
         while (true) {
-            // Reset the board and players' positions if they choose to play again
+
+            getPlayerNames();
+            System.out.print("\n" + "Enter W (up), A (left), S (down), D (right) to move:\n");
             GameBoard.resetGameBoard();
+            GameBoard.printBoard();
+            // Reset the board and players' positions if they choose to play again
+            player1Turn = true; // Reset to Player 1's turn at the start of a new game
 
             while (true) {
                 System.out.println(player1Turn ? "\n" + player1Name + "'s turn" : "\n" + player2Name + "'s turn");
                 System.out.print("\n>> ");
                 String input = scanner.nextLine().toUpperCase();
 
+                // Process the input and make moves
                 switch (input) {
-                    case "W", "w": // Up
+                    case "W": // Up
                         GameBoard.movePlayer(-1, 0);
+                        WritePlayToFile.WriteToFile();
                         break;
-                    case "A", "a": // Left
+                    case "A": // Left
                         GameBoard.movePlayer(0, -2);
+                        WritePlayToFile.WriteToFile();
                         break;
-                    case "S", "s": // Down
+                    case "S": // Down
                         GameBoard.movePlayer(1, 0);
+                        WritePlayToFile.WriteToFile();
                         break;
-                    case "D", "d": // Right
+                    case "D": // Right
                         GameBoard.movePlayer(0, 2);
+                        WritePlayToFile.WriteToFile();
                         break;
                     default:
                         System.out.println("Invalid input. Use W, A, S, or D.");
+                        continue; // Skip the rest of the loop if input is invalid
                 }
-                // Check if player has reached the winning spot
-                // After the move, check if the player has reached the target (denoted by "$")
-                if (GameBoard.win == true) {
-                    System.out.println("Congratulations " + (player1Turn ? player1Name : player2Name) + "! You reached" +
-                            " the winning spot!");
-                    askToPlayAgain();
-                    break; // Exit the loop if the player reaches the target
+
+                GameBoard.printBoard();
+                // Check if player has reached the target
+                if (GameBoard.win) {
+                    System.out.println("Congratulations " + (player1Turn ? player1Name : player2Name) + "! You reached the winning spot!");
+
+                    // Ask to play again, and break out if they choose not to
+                    if (!askToPlayAgain()) {
+                        if (askToReplay()){
+                            GameBoard.replayGame();
+                            WritePlayToFile.clearReplayFile();
+                            System.out.println("Thank you for playing! Goodbye.");
+                            GameBoard.resetGameBoard();
+                            System.exit(0);
+                            return; // Exit the method, ending the game completely
+                        }else {
+                            System.exit(0);
+                        }
+                        //GameBoard.replayGame();
+                    } else {
+                        GameBoard.resetGameBoard();
+                        GameBoard.win = false;
+                        WritePlayToFile.clearReplayFile();
+                        //GameBoard.printBoard();
+                        break; // Break inner loop to restart the game in the outer loop
+                    }
                 }
+
+                // Check if no more moves are available
                 if (!GameBoard.hasAvailableMoves()) {
                     System.out.println("No more available moves! Game over.");
-                    break; // Exit the loop if no moves are available
+                    GameBoard.win = false;
+                    if (!askToReplay()){
+                        System.out.println("Thank you for playing! Goodbye.");
+                    }else {
+                        GameBoard.replayGame();
+                        System.out.println("Thank you for playing! Goodbye.");
+                        WritePlayToFile.clearReplayFile();
+                        GameBoard.resetGameBoard();
+                        System.exit(0);
+                    }
+                    break; // Exit the inner loop to start a new game
                 }
+
+                // Alternate turn
                 player1Turn = !player1Turn;
             }
-            // Ask if they want to play again after the game ends
+
+            // If the player wants to replay the game, read and display it
+
         }
     }
+
 }
 
 
