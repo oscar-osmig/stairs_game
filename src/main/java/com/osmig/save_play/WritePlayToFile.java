@@ -15,6 +15,7 @@ public class WritePlayToFile {
         try (
                 BufferedWriter writer = new BufferedWriter(new FileWriter(filePath, true))) {
             for (String[] row : GameBoard.board) {
+                writer.write(GameBoard.sp);
                 for (String cell : row) {
                     writer.write(cell);
                 }
@@ -22,7 +23,7 @@ public class WritePlayToFile {
             }
             writer.write("\n");  // Add a blank line to separate moves
         } catch (IOException e) {
-            System.out.println("Error writing to file: " + e.getMessage());
+            System.out.println(GameBoard.sp + "Error writing to file: " + e.getMessage());
         }
     }
 

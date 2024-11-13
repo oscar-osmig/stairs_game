@@ -17,7 +17,7 @@ public class ArrowKeyListener {
 
     public static boolean askToPlayAgain() {
         Scanner scanner = new Scanner(System.in);
-        System.out.print("Do you want to play again? (y/n): ");
+        System.out.print(GameBoard.sp + "Do you want to play again? (y/n): ");
         String response = scanner.nextLine().toLowerCase();
         return response.equalsIgnoreCase("y");
     }
@@ -26,15 +26,15 @@ public class ArrowKeyListener {
     private static String player2Name;
     public static void getPlayerNames() {
         Scanner scanner = new Scanner(System.in);
-        System.out.print("\nEnter Player 1's name: ");
+        System.out.print("\n" + GameBoard.sp + "Enter Player 1's name: ");
         player1Name = scanner.nextLine();
-        System.out.print("\nEnter Player 2's name: ");
+        System.out.print("\n" + GameBoard.sp +  "Enter Player 2's name: ");
         player2Name = scanner.nextLine();
     }
 
     public static boolean askToReplay() {
         Scanner scanner = new Scanner(System.in);
-        System.out.print("Do you want to replay the game? (y/n): ");
+        System.out.print(GameBoard.sp + "Do you want to replay the game? (y/n): ");
         String response = scanner.nextLine().toLowerCase();
         return response.equalsIgnoreCase("y");
     }
@@ -49,15 +49,15 @@ public class ArrowKeyListener {
         while (true) {
             WritePlayToFile.clearReplayFile();
             getPlayerNames();
-            System.out.print("\n" + "Enter W (up), A (left), S (down), D (right) to move:\n");
+            System.out.print("\n" + GameBoard.sp +  "Enter W (up), A (left), S (down), D (right) to move:\n");
             GameBoard.resetGameBoard();
             GameBoard.printBoard();
             // Reset the board and players' positions if they choose to play again
             player1Turn = true; // Reset to Player 1's turn at the start of a new game
 
             while (true) {
-                System.out.println(player1Turn ? "\n" + player1Name + "'s turn" : "\n" + player2Name + "'s turn");
-                System.out.print("\n>> ");
+                System.out.println(player1Turn ? "\n" +GameBoard.sp +  player1Name + "'s turn" : "\n" + GameBoard.sp + player2Name + "'s turn");
+                System.out.print("\n"+GameBoard.sp + ">> ");
                 String input = scanner.nextLine().toUpperCase();
 
                 // Process the input and make moves
@@ -79,14 +79,14 @@ public class ArrowKeyListener {
                         WritePlayToFile.WriteToFile();
                         break;
                     default:
-                        System.out.println("Invalid input. Use W, A, S, or D.");
+                        System.out.println(GameBoard.sp + "Invalid input. Use W, A, S, or D.");
                         continue; // Skip the rest of the loop if input is invalid
                 }
 
                 GameBoard.printBoard();
                 // Check if player has reached the target
                 if (GameBoard.win) {
-                    System.out.println("Congratulations " + (player1Turn ? player1Name : player2Name) + "! You reached the winning spot!");
+                    System.out.println(GameBoard.sp + "Congratulations " + (player1Turn ? player1Name : player2Name) + "! You reached the winning spot!");
 
                     // Ask to play again, and break out if they choose not to
                     if (!askToPlayAgain()) {
@@ -112,7 +112,7 @@ public class ArrowKeyListener {
 
                 // Check if no more moves are available
                 if (!GameBoard.hasAvailableMoves()) {
-                    System.out.println("No more available moves! Game over.");
+                    System.out.println(GameBoard.sp + "No more available moves! Game over.");
                     GameBoard.win = false;
                     if (!askToReplay()){
                         System.out.println("Thank you for playing! Goodbye.");
@@ -120,7 +120,7 @@ public class ArrowKeyListener {
                         System.exit(0);
                     }else {
                         GameBoard.replayGame();
-                        System.out.println("Thank you for playing! Goodbye.");
+                        System.out.println(GameBoard.sp + "Thank you for playing! Goodbye.");
                         WritePlayToFile.clearReplayFile();
                         GameBoard.resetGameBoard();
                         System.exit(0);

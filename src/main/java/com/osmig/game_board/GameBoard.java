@@ -38,14 +38,19 @@ public class GameBoard {
 
 
     public static void replayGame() {
-        System.out.println("Replaying Game...");
-
+        System.out.println(GameBoard.sp +"Replaying Game...");
+        int lineCount = 1;
         try (BufferedReader reader = new BufferedReader(new FileReader(WritePlayToFile.filePath))) {
             String line;
             while ((line = reader.readLine()) != null) {
-                System.out.println(line);
+                System.out.print(line + "\n");
+                lineCount++;
                 // Add a delay for better readability
-                Thread.sleep(500); // Half a second delay
+                if (lineCount == 11) {
+                    lineCount = 1;
+                    Thread.sleep(49);
+                    //System.out.println();
+                }
             }
         } catch (IOException | InterruptedException e) {
             System.out.println("Error reading the file: " + e.getMessage());
@@ -60,14 +65,14 @@ public class GameBoard {
 
         // Boundary check
         if (newX < 0 || newX >= board.length || newY < 0 || newY >= board[0].length) {
-            System.out.println("Move is out of bounds.");
+            System.out.println(GameBoard.sp +"Move is out of bounds.");
             return;
         }
 
         // Prevent moving into previously occupied positions
         String targetCell = board[newX][newY];
         if (targetCell.equals("-->") || targetCell.equals("<--") || targetCell.equals("|") || targetCell.equals("#")) {
-            System.out.println("Cannot move to a previously occupied position.");
+            System.out.println(GameBoard.sp +"Cannot move to a previously occupied position.");
             return;
         }
 
@@ -83,7 +88,7 @@ public class GameBoard {
         // Check if target is reached
         // Check if target is reached
         if (newX == targetRow && newY == targetCol) {
-            System.out.println("Target reached!");
+            System.out.println(GameBoard.sp +"Target reached!");
             board[newX][newY] = "#";// Replace "@" with "#"
             win = true;
         } else {
@@ -128,6 +133,7 @@ public class GameBoard {
 
     public static void printBoard(){
         for (String[] row: board){
+            System.out.print(GameBoard.sp);
             for (String element : row){
                 System.out.print(element);
             }
