@@ -5,13 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="82896196-09b7-46a6-88fa-092fb290ecdd" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/osmig/game_board/GameBoard.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/osmig/key_listener/ArrowKeyListener.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/toCompile.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/material_theme_project_new.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/material_theme_project_new.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pluralsight/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/osmig/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/osmig/game_board/GameBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/osmig/game_board/GameBoard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/osmig/key_listener/ArrowKeyListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/osmig/key_listener/ArrowKeyListener.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
