@@ -1,5 +1,6 @@
 package com.osmig.game_board;
 
+import com.osmig.clear_screen.ClearConsole;
 import com.osmig.key_listener.ArrowKeyListener;
 import com.osmig.save_play.WritePlayToFile;
 
@@ -38,18 +39,26 @@ public class GameBoard {
 
 
     public static void replayGame() {
-        System.out.println(GameBoard.sp +"Replaying Game...");
-        int lineCount = 1;
+        System.out.println();
+        System.out.println();
+        System.out.println("\n" + GameBoard.sp + "Replaying Game...");
+        int lineCount = 0;
+
         try (BufferedReader reader = new BufferedReader(new FileReader(WritePlayToFile.filePath))) {
             String line;
             while ((line = reader.readLine()) != null) {
-                System.out.print(line + "\n");
+                // Print the line
+                System.out.println(line);
                 lineCount++;
-                // Add a delay for better readability
+
+                // Every 10 lines, clear console and pause
                 if (lineCount == 11) {
-                    lineCount = 1;
-                    Thread.sleep(49);
-                    //System.out.println();
+                    lineCount = 0;
+                    Thread.sleep(1000); // 3-second pause to view batch of 10 lines
+                    ClearConsole.clear(); // Clear console after each batch of 10 lines
+                    System.out.println();
+                    System.out.println();
+                    System.out.println("\n" + GameBoard.sp + "Replaying Game...");
                 }
             }
         } catch (IOException | InterruptedException e) {
@@ -58,24 +67,22 @@ public class GameBoard {
     }
 
     public static boolean win = false;
-    public static void movePlayer(int dx, int dy) {
-
+    public static boolean movePlayer(int dx, int dy) {
         int newX = posX + dx;
         int newY = posY + dy;
 
         // Boundary check
         if (newX < 0 || newX >= board.length || newY < 0 || newY >= board[0].length) {
-            System.out.println(GameBoard.sp +"Move is out of bounds.");
-            return;
+            System.out.println(GameBoard.sp + "Move is out of bounds.");
+            return false; // Move is invalid
         }
 
         // Prevent moving into previously occupied positions
         String targetCell = board[newX][newY];
         if (targetCell.equals("-->") || targetCell.equals("<--") || targetCell.equals("|") || targetCell.equals("#")) {
-            System.out.println(GameBoard.sp +"Cannot move to a previously occupied position.");
-            return;
+            System.out.println(GameBoard.sp + "Cannot move to a previously occupied position.");
+            return false; // Move is invalid
         }
-
 
         // Set the directional indicator in the correct position
         if (dy == 2) { // Moving right
@@ -85,26 +92,24 @@ public class GameBoard {
         } else if (dx == -1 || dx == 1) { // Moving up or down
             board[posX][posY] = "|";
         }
-        // Check if target is reached
+
         // Check if target is reached
         if (newX == targetRow && newY == targetCol) {
-            System.out.println(GameBoard.sp +"Target reached!");
-            board[newX][newY] = "#";// Replace "@" with "#"
+            System.out.println(GameBoard.sp + "Target reached!");
+            board[newX][newY] = "#"; // Replace "@" with "#"
             win = true;
         } else {
             // Update the new position
             board[newX][newY] = "#";
         }
 
+        // Update the player’s position
         posX = newX;
         posY = newY;
 
-        //printBoard();
-
-//        if (!hasAvailableMoves()){
-//            System.out.println("No more available moves!");
-//        }
+        return true; // Move was successful
     }
+
 
     public static boolean hasAvailableMoves() {
         // Directions array: {row_offset, col_offset}
@@ -126,12 +131,14 @@ public class GameBoard {
     }
 
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, InterruptedException {
         //printBoard();
         ArrowKeyListener.checkPlayerMove(board);
     }
 
     public static void printBoard(){
+        System.out.println();
+        System.out.println();
         for (String[] row: board){
             System.out.print(GameBoard.sp);
             for (String element : row){

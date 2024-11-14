@@ -5,10 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="82896196-09b7-46a6-88fa-092fb290ecdd" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/osmig/clear_screen/ClearConsole.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/com/osmig/game_board/GameBoard.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/com/osmig/game_board/GameBoard.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sources.txt" beforeDir="false" afterPath="$PROJECT_DIR$/sources.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/osmig/game_board/GameBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/osmig/game_board/GameBoard.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/osmig/key_listener/ArrowKeyListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/osmig/key_listener/ArrowKeyListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/osmig/save_play/WritePlayToFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/osmig/save_play/WritePlayToFile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/toCompile.txt" beforeDir="false" afterPath="$PROJECT_DIR$/toCompile.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,10 +45,10 @@
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;Application.ArrowKeyListener.executor&quot;: &quot;Run&quot;,
-    &quot;Application.GameBoard.executor&quot;: &quot;Run&quot;,
+    &quot;Application.GameBoard.executor&quot;: &quot;Debug&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;replay&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;clear__screen&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/Users/osmig/OneDrive/Desktop/pluralsight/java-development/DELIcious&quot;
